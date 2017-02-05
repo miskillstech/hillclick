@@ -37,7 +37,7 @@ class Module extends CI_Model
         }
         
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////members///////////////////////////////////////////////////////////
     public function get_members()
     {
         $this->db->select('*');
@@ -79,8 +79,48 @@ class Module extends CI_Model
         
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////Hotels///////////////////////////////////////////////////////////
+    public function get_hotels()
+    {
+        $this->db->select('*');
+        $this->db->from('hlck_hotels');
+        $query = $this->db->get();
+        return $query->result_array();
+    }
+    public function get_hotels_by_id($id)
+    {
+        
+        $this->db->select('*');
+        $this->db->where("id", $id);
+        $this->db->from('hlck_hotels');
+        $query = $this->db->get();
+        return $query->result_array();
+        
+    }
     
-    
+    public function delete_hotels($id)
+    {
+        
+        $this->db->where('id ', $id);
+        $this->db->delete('hlck_hotels');
+        
+    }
+    public function update_hotels($id,$data)
+    {
+        
+        $this->db->where('id', $id);
+        $this->db->update('hlck_hotels', $data);
+        return true;
+        
+    }
+    public function add_hotels($data)
+    {
+        
+        $this->db->insert('hlck_hotels', $data);
+        return true;
+        
+    }
+    /////////////////////////////////////////////////////////////////////
     function get_setting_values()
     {
         $this->db->select('setting_value');

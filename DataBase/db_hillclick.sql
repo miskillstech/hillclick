@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2017 at 08:41 AM
+-- Generation Time: Feb 05, 2017 at 09:12 AM
 -- Server version: 10.0.17-MariaDB
 -- PHP Version: 5.6.14
 
@@ -64,10 +64,10 @@ INSERT INTO `hlck_ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hlck_hotel`
+-- Table structure for table `hlck_hotels`
 --
 
-CREATE TABLE `hlck_hotel` (
+CREATE TABLE `hlck_hotels` (
   `id` int(11) NOT NULL,
   `member_id` int(11) NOT NULL,
   `destination_id` int(11) NOT NULL,
@@ -79,7 +79,8 @@ CREATE TABLE `hlck_hotel` (
   `hotel_mail_id` varchar(255) NOT NULL,
   `hotel_city` varchar(255) NOT NULL,
   `hotel_location` varchar(255) DEFAULT NULL,
-  `latitude_longitude` varchar(255) NOT NULL,
+  `latitude` varchar(255) NOT NULL,
+  `longitude` varchar(255) NOT NULL,
   `star_rating` int(11) NOT NULL,
   `check_in_time` time NOT NULL,
   `check_out_time` time NOT NULL,
@@ -137,10 +138,10 @@ INSERT INTO `hlck_members` (`id`, `member_name`, `member_email`, `member_passwor
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hlck_setting`
+-- Table structure for table `hlck_settings`
 --
 
-CREATE TABLE `hlck_setting` (
+CREATE TABLE `hlck_settings` (
   `setting_id` int(11) NOT NULL,
   `setting_key` varchar(200) NOT NULL,
   `setting_value` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -148,10 +149,10 @@ CREATE TABLE `hlck_setting` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `hlck_setting`
+-- Dumping data for table `hlck_settings`
 --
 
-INSERT INTO `hlck_setting` (`setting_id`, `setting_key`, `setting_value`, `status`) VALUES
+INSERT INTO `hlck_settings` (`setting_id`, `setting_key`, `setting_value`, `status`) VALUES
 (1, 'admin_email', 'webhawks@gmail.com', 'Active'),
 (2, 'facebook', 'https://www.facebook.com/IdealClinicsKSA', 'Active'),
 (3, 'google_plus', 'debarpita@webhawkstechnology.com', 'Active'),
@@ -222,9 +223,9 @@ ALTER TABLE `hlck_admin_login`
   ADD PRIMARY KEY (`admin_id`);
 
 --
--- Indexes for table `hlck_hotel`
+-- Indexes for table `hlck_hotels`
 --
-ALTER TABLE `hlck_hotel`
+ALTER TABLE `hlck_hotels`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -234,9 +235,9 @@ ALTER TABLE `hlck_members`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `hlck_setting`
+-- Indexes for table `hlck_settings`
 --
-ALTER TABLE `hlck_setting`
+ALTER TABLE `hlck_settings`
   ADD PRIMARY KEY (`setting_id`);
 
 --
@@ -261,9 +262,9 @@ ALTER TABLE `hlclk_city`
 ALTER TABLE `hlck_admin_login`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `hlck_hotel`
+-- AUTO_INCREMENT for table `hlck_hotels`
 --
-ALTER TABLE `hlck_hotel`
+ALTER TABLE `hlck_hotels`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `hlck_members`
@@ -271,9 +272,9 @@ ALTER TABLE `hlck_hotel`
 ALTER TABLE `hlck_members`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
--- AUTO_INCREMENT for table `hlck_setting`
+-- AUTO_INCREMENT for table `hlck_settings`
 --
-ALTER TABLE `hlck_setting`
+ALTER TABLE `hlck_settings`
   MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `hlck_state`
