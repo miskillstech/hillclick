@@ -37,6 +37,12 @@
                       <li><a href="<?=$this->config->item('site_base_url')?>main/add_member">Add members</a></li>
                       </ul>
                   </li>
+                  <li><a><i class="fa fa-edit"></i> Hotel <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="<?=$this->config->item('site_base_url')?>main/members">Hotel List</a></li>
+                      <li><a href="<?=$this->config->item('site_base_url')?>main/add_member">Add Hotel</a></li>
+                      </ul>
+                  </li>
                   <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="general_elements.html">General Elements</a></li>

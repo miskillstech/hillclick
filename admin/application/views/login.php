@@ -1,7 +1,7 @@
 <div class="login-page">
 <h2>Hillclick Admin Portal</h2>
   <div class="form">
-    <form class="login-form" method="post" action="<?=$this->config->item('site_base_url')?>login">
+    <form class="login-form" method="post" action="<?=$this->config->item('site_base_url')?>main/login">
       <input type="text" name="username"placeholder="username"/>
       <input type="password" name="password"placeholder="password"/>
       <button type="">login</button>

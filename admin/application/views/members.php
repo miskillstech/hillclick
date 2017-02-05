@@ -151,12 +151,6 @@ $status_array=array(
     'Inactive'=>'warning',
 
   );
-$gender_array=array(
-
-    'Male'=>'info',
-    'Female'=>'danger',
-
-  );
 ?>
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
@@ -167,8 +161,9 @@ $gender_array=array(
                       <thead>
                         <tr>
                          <th class="sorting_asc" tabindex="0" aria-controls="datatable-fixed-header" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" aria-sort="ascending" style="width: 160px;">Name</th>
-                          <th>Date of Birth</th>
-                          <th>Ocupation</th>
+                          <th>Email</th>
+                          <th>City</th>
+                           <th>Phone</th>
                           <th>Status</th>
                           <th>Action</th>
                         </tr>
@@ -180,13 +175,12 @@ $gender_array=array(
 						foreach($results as $result)
 						{?>
                         <tr>
-                        <td><?=$result['first_name'].' '.$result['middle_name'].' '.$result['last_name']?></td>
-                        <td><?=$result['date_of_birth']?></td>
-                        <td><?=$result['status']?></td>
-                        <td><span class="btn btn-round btn-<?=$gender_array[$result['gender']]?>"><?=$result['gender']?></span></td>
-                        <td><?=ucfirst($result['ocupation'])?></td>
-                        <td><span class="btn btn-<?=$status_array[$result['status']]?>"><?=$result['status']?></span></td>
-                        
+                        <td><?=$result['member_name']?></td>
+                        <td><?=$result['member_email']?></td>
+                        <td><?=$result['member_city']?></td>
+                        <td><?=$result['member_phone']?></span></td>
+                         <td><span class="btn btn-<?=$status_array[$result['status']]?>"><?=$result['status']?></span></td>
+                                       
                          <td><a href="<?=$this->config->item('site_base_url')?>main/edit_member/<?=$result['id']?>" class="btn btn-success" title="Edit"  role="button" ><i class="fa fa-edit m-right-xs"></i></a>
                          
                          <a href="<?=$this->config->item('site_base_url')?>main/delete_member/<?=$result['id']?>" class="btn btn-danger" title="Delete"  role="button" ><i class="fa fa-close"></i></a>

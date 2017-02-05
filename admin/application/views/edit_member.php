@@ -95,26 +95,17 @@
 if(!empty($results) && !empty($id))
 {
 $action="edit_member/".$id;
-$first_name=$results[0]['first_name'];
-$middle_name=$results[0]['middle_name'];
-$last_name=$results[0]['last_name'];
-$date_of_birth=$results[0]['date_of_birth'];
-$gender=$results[0]['gender'];
-$ocupation=$results[0]['ocupation'];
+$member_name=$results[0]['member_name'];
+$member_email=$results[0]['member_email'];
 $status=$results[0]['status'];
-$marital_status=$results[0]['marital_status'];
-$address=$results[0]['address'];
+$member_address=$results[0]['member_address'];
 
 }else {
 $action="add_member";
-$first_name='';
-$middle_name='';
-$last_name='';
-$gender='';
-$date_of_birth='';
-$ocupation='';
+$member_name='';
 $status='';
-$address='';
+$member_address='';
+$member_email='';
                     }
 
                     ?>
@@ -122,71 +113,28 @@ $address='';
  <form data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" class="form-horizontal form-label-left" action="<?php echo $this->config->item('site_base_url').'main/'.$action;?>" method="post" enctype="multipart/form-data">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" name="first_name" required="required" value="<?=$first_name?>" class="form-control col-md-7 col-xs-12 parsley-success" data-parsley-id="5">
+                          <input type="text" id="first-name" name="member_name" required="required" value="<?=$member_name?>" class="form-control col-md-7 col-xs-12 parsley-success" data-parsley-id="5">
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Middle Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" name="middle_name" required="required" value="<?=$middle_name?>" class="form-control col-md-7 col-xs-12 parsley-success" data-parsley-id="5">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="last-name" name="last_name" value="<?=$last_name?>"  required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="7">
-                        </div>
-                      </div>
-                      
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div id="gender" class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-default <?php if($gender=='Male') {echo "active";}?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" value="Male" <?php if($gender=='Male') {echo "checked='true'";} ?> data-parsley-multiple="gender" data-parsley-id="12"> &nbsp; Male &nbsp;
-                            </label>
-                            <label class="btn btn-default <?php if($gender=='Female') {echo "active";} ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                              <input type="radio" name="gender" <?php if($gender=='Female') {echo "checked='true'";} ?> value="Female" data-parsley-multiple="gender"> Female
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group">
+                     
+                        <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Address <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea class="form-control" rows="3" name="address" placeholder="Address"><?=$address?></textarea>
+                          <textarea class="form-control" rows="3" name="member_address" placeholder="Address"><?=$member_address?></textarea>
                         </div>
                       </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
+                        <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email Id<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="birthday" class="date-picker form-control col-md-7 col-xs-12 parsley-success" name="date_of_birth" value="<?=date('d/m/Y',strtotime($date_of_birth))?>"required="required" type="text" data-parsley-id="16">
+                          <input type="text" id="last-name" name="member_email" value="<?=$member_email?>"  required="required" class="form-control col-md-7 col-xs-12 " >
                         </div>
                       </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Ocupation<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="last-name" name="ocupation" value="<?=$ocupation?>"  required="required" class="form-control col-md-7 col-xs-12 " >
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Marital Status</label>
-                        <div class="col-md-2 col-sm-2 col-xs-12">
-                          <select class="form-control" name="marital_status">
-                            <option <?php if($marital_status=='Single') {echo "selected='true'";} ?>value="Single" >Single</option>
-                            <option <?php if($marital_status=='Married') {echo "selected='true'";} ?>value="Married" >Married</option>
-                            </select>
-                        </div>
-                      </div>
-                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
                         <div class="col-md-2 col-sm-2 col-xs-12">
                           <select class="form-control" name="status">

@@ -63,11 +63,18 @@ class Module extends CI_Model
         $this->db->delete('hlck_members');
         
     }
-    public function update_members($id)
+    public function update_members($id,$data)
     {
         
         $this->db->where('id', $id);
         $this->db->update('hlck_members', $data);
+        return true;
+        
+    }
+    public function add_members($data)
+    {
+        
+        $this->db->insert('hlck_members', $data);
         return true;
         
     }

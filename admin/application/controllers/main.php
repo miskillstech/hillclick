@@ -55,7 +55,6 @@ class Main extends CI_Controller
             $username         = $this->input->post('username');
             $password         = $this->encrip_password($this->input->post('password'));
             $valid_credential = $this->module->admin_login($username, $password);
-            
             if (!empty($valid_credential)) { 
             	            	
                 redirect($this->config->item('site_base_url') . 'main/dashboard');
@@ -89,54 +88,48 @@ class Main extends CI_Controller
         } else {
             redirect($this->config->item('site_base_url') . 'main/login');
         } 
-       
-        
     }
     
     public function add_member($id = '')
     {
         if ($this->input->post()) {
-            
-            print_r($this->input->post());
-            die;
-            
-            
+            $data_to_add = array(
+                'member_name' => addslashes($this->input->post('member_name')),
+                'status' => addslashes($this->input->post('status')),
+                'date_modified' => date('Y-m-d H:i:s'),
+                'member_email' => addslashes($this->input->post('member_email')),
+                'member_address' => addslashes($this->input->post('member_address'))
+            );
+             $this->module->add_members($data_to_add);
+          redirect($this->config->item('site_base_url') . 'main/members');    
         }
-        $data['results'] = $this->module->get_members();
-        $this->load->view('edit_member', $data);
+        $this->load->view('edit_member');
     }
     
     public function edit_member($id = '')
     {
-        
-        
         if ($this->input->server('REQUEST_METHOD') === 'POST') {
             
-            $data_to_store = array(
-                'first_name' => addslashes($this->input->post('first_name')),
-                'middle_name' => addslashes($this->input->post('middle_name')),
-                'last_name' => md5(addslashes($this->input->post('last_name'))),
-                'date_of_birth' => addslashes($this->input->post('date_of_birth')),
-                'gender' => addslashes($this->input->post('gender')),
-                'ocupation' => addslashes($this->input->post('ocupation')),
-                'marital_status' => addslashes($this->input->post('marital_status')),
+            $data_to_update = array(
+                'member_name' => addslashes($this->input->post('member_name')),
                 'status' => addslashes($this->input->post('status')),
                 'date_modified' => date('Y-m-d H:i:s'),
-                'address' => addslashes($this->input->post('address'))
+                'member_address' => addslashes($this->input->post('member_address'))
             );
-            
-            
-        }
-        
-        $data['results'] = $this->module->get_members_by_id($id);
+           $this->module->update_members($id,$data_to_update);
+       }
+       $data['results'] = $this->module->get_members_by_id($id);
+        // print_r($data['results']);
+        // die();
         $data['id']      = $id;
         
         $this->load->view('edit_member', $data);
     }
     public function delete_member($id = '')
     {
-        
-        $this->load->view('edit_member', $data);
+        $this->module->delete_members($id);
+         $data['results'] = $this->module->get_members();
+        $this->load->view('members', $data);
         
     }
 }
