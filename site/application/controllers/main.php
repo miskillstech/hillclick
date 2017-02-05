@@ -22,31 +22,14 @@ class Main extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        
-        
     }
     
     public function index()
     {
-        if ($this->input->cookie('is_logged_in')) {
-            redirect($this->config->item('site_base_url').'main/dashboard');
-        } else {
-            redirect($this->config->item('site_base_url') . 'main/login');
-        }
+        $this->load->view('index');
         
     }
     
-    public function dashboard()
-    {
-       if ($this->input->cookie('is_logged_in')) {
-            $this->load->view('index');
-        } else {
-            redirect($this->config->item('site_base_url') . 'main/login');
-        } 
-       
-        
-        
-    }
     public function login()
     {
        

@@ -23,10 +23,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$site_url = "http://www.miskillstech.com/patient-portal/";
-$config['base_url'] = "http://www.miskillstech.com/patient-portal/site";
+$site_url = "http://localhost/hillclick/";
+$config['base_url'] = "http://localhost/hillclick/site";
 $config['index_page'] = "";
-$config['site_base_url'] = "http://www.miskillstech.com/patient-portal/";
+$config['site_base_url'] = "http://localhost/hillclick/";
 $config['uri_protocol'] = "REQUEST_URI";
 
 //$site_url = 'http://www.miskillstech.com/patient-portal/'; 
