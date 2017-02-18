@@ -6,10 +6,18 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+ <style type="text/css" media="screen">
+    .map_canvas { 
+  width: 600px; 
+  height: 400px; 
+  margin: 10px 20px 10px 0;
+}
+     
+    </style>
     <title>hotel portal </title>
 
     <!-- Bootstrap -->
+   
     <link href="<?=base_url();?>vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="<?=base_url();?>vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -113,7 +121,7 @@ $hotel_email='';
  <form data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" class="form-horizontal form-label-left" action="<?php echo $this->config->item('site_base_url').'main/'.$action;?>" method="post" enctype="multipart/form-data">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Hotel Name <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="first-name" name="hotel_name" required="required" value="<?=$hotel_name?>" class="form-control col-md-7 col-xs-12 parsley-success" data-parsley-id="5">
@@ -123,9 +131,17 @@ $hotel_email='';
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Address <span class="required">*</span>
                         </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <textarea class="form-control" rows="3" name="hotel_address" placeholder="Address"><?=$hotel_address?></textarea>
-                        </div>
+                       
+        <div class="col-md-6 col-sm-6 col-xs-12">
+     <input type="text" id="geocomplete" placeholder="Type in an address" value="111 Broadway, New York, NY"   required="required" class="form-control col-md-7 col-xs-12 " >
+     <input name="lat" type="hidden"> <input name="lng" type="hidden">
+      </div>
+                      </div>
+                      <div class="form-group">
+                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Map<span class="required">*</span></label>
+
+                      <div id="map" class="map_canvas" ></div>
+                      
                       </div>
                         <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email Id<span class="required">*</span>
@@ -415,5 +431,54 @@ $hotel_email='';
       });
     </script>
     <!-- /Starrr -->
+    <!-- geocomplete -->
+     <!-- for google map -->
+   
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry,places&ext=.js &key=AIzaSyD69GXcM9MMcxjn3QGsPmvG0R0svP2wUJ8"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="<?=base_url();?>js/jquery.geocomplete.min.js"></script>
+    <
+    <!-- end of google map -->
+     <script>
+      $(function(){
+        
+        $("#geocomplete").geocomplete({
+          map: ".map_canvas",
+          details: "form ",
+          markerOptions: {
+            draggable: true
+          }
+        });
+        
+        $("#geocomplete").bind("geocode:dragged", function(event, latLng){
+          $("input[name=lat]").val(latLng.lat());
+          $("input[name=lng]").val(latLng.lng());
+          $("#reset").show();
+        });
+        
+        
+        $("#reset").click(function(){
+          $("#geocomplete").geocomplete("resetMarker");
+          $("#reset").hide();
+          return false;
+        });
+        
+        $("#find").click(function(){
+          $("#geocomplete").trigger("geocode");
+        }).click();
+        var options = {
+          map: ".map_canvas",              
+          location: [-35.3075, 149.124417],
+          mapOptions: {
+            zoom: 12
+          },
+          zoom: 12,
+          types: ['establishment'],              
+          country: 'au'              
+        };
+
+        $("#geocomplete").geocomplete(options).val(); 
+      });
+    </script>
   </body>
 </html>
